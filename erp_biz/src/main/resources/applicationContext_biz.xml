@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 配置注解扫面路径 -->
+    <context:component-scan base-package="yh.erp.advance" />
+    <!-- 开启注解 -->
+    <context:annotation-config />
+    <!-- 开启aspectj代理 -->
+    <aop:aspectj-autoproxy />
+	
+	<!-- 通知 -->
+	<tx:advice id="advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="do*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* yh.erp.biz.impl.*.*(..))" id="myPointCut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="myPointCut"/>
+	</aop:config>
+	
+	<!-- DepBiz -->
+	<bean id="depBiz" class="yh.erp.biz.impl.DepBiz">
+		<property name="depDao" ref="depDao"/>
+	</bean>
+	
+	<!-- EmpBiz -->
+	<bean id="empBiz" class="yh.erp.biz.impl.EmpBiz">
+		<property name="empDao" ref="empDao"/>
+		<property name="roleDao" ref="roleDao"/>
+		<property name="menuDao" ref="menuDao"/>
+		<property name="jedis" ref="jedis"/>
+	</bean>
+	
+	<!-- GoodsBiz -->
+	<bean id="goodsBiz" class="yh.erp.biz.impl.GoodsBiz">
+		<property name="goodsDao" ref="goodsDao"/>
+	</bean>
+	
+	<!-- GoodsTypeBiz -->
+	<bean id="goodsTypeBiz" class="yh.erp.biz.impl.GoodsTypeBiz">
+		<property name="goodsTypeDao" ref="goodsTypeDao"/>
+	</bean>
+	
+	<!-- InventoryBiz -->
+	<bean id="inventoryBiz" class="yh.erp.biz.impl.InventoryBiz">
+		<property name="inventoryDao" ref="inventoryDao"/>
+	</bean>
+	
+	<!-- MenuBiz -->
+	<bean id="menuBiz" class="yh.erp.biz.impl.MenuBiz">
+		<property name="menuDao" ref="menuDao"/>
+	</bean>
+	
+	<!-- OrderDetailBiz -->
+	<bean id="orderDetailBiz" class="yh.erp.biz.impl.OrderDetailBiz">
+		<property name="orderDetailDao" ref="orderDetailDao"/>
+		<property name="storeDetailDao" ref="storeDetailDao"/>
+		<property name="storeOperDao" ref="storeOperDao"/>
+        <property name="waybillWs" ref="waybillClient"/>
+        <property name="supplierDao" ref="supplierDao"/>
+	</bean>
+	
+	<!-- OrdersBiz -->
+	<bean id="ordersBiz" class="yh.erp.biz.impl.OrdersBiz">
+		<property name="ordersDao" ref="ordersDao"/>
+		<property name="empDao" ref="empDao"/>
+		<property name="supplierDao" ref="supplierDao"/>
+		<property name="waybillWs" ref="waybillClient"/>
+	</bean>
+	
+	<!-- ReturnOrderDetailBiz -->
+	<bean id="returnOrderDetailBiz" class="yh.erp.biz.impl.ReturnOrderDetailBiz">
+		<property name="returnOrderDetailDao" ref="returnOrderDetailDao"/>
+
+	</bean>
+	
+	<!-- ReturnOrdersBiz -->
+	<bean id="returnOrdersBiz" class="yh.erp.biz.impl.ReturnOrdersBiz">
+		<property name="returnOrdersDao" ref="returnOrdersDao"/>
+	</bean>
+	
+	<!-- RoleBiz -->
+	<bean id="roleBiz" class="yh.erp.biz.impl.RoleBiz">
+		<property name="roleDao" ref="roleDao"/>
+		<property name="menuDao" ref="menuDao"/>
+		<property name="jedis" ref="jedis"/>
+	</bean>
+	
+	<!-- StoreDetailBiz -->
+	<bean id="storeDetailBiz" class="yh.erp.biz.impl.StoreDetailBiz">
+		<property name="storeDetailDao" ref="storeDetailDao"/>
+		<property name="mailUtil"  ref="mailUtil"/>
+		<property name="to"  value="742583004@qq.com"/>
+		<property name="subject"  value="库存预警  时间：[time]"/>
+		<property name="text"  value="有[count]种商品库存已经不足，请登陆系统查看！"/>
+	</bean>
+	
+	<!-- StoreBiz -->
+	<bean id="storeBiz" class="yh.erp.biz.impl.StoreBiz">
+		<property name="storeDao" ref="storeDao"/>
+	</bean>
+	
+	<!-- StoreOperBiz -->
+	<bean id="storeOperBiz" class="yh.erp.biz.impl.StoreOperBiz">
+		<property name="storeOperDao" ref="storeOperDao"/>
+	</bean>
+	
+	<!-- SupplierBiz -->
+	<bean id="supplierBiz" class="yh.erp.biz.impl.SupplierBiz">
+		<property name="supplierDao" ref="supplierDao"/>
+	</bean>
+	<!-- ReportBiz -->
+	<bean id="reportBiz" class="yh.erp.biz.impl.ReportBiz">
+		<property name="reportDao" ref="reportDao"/>
+	</bean>
+</beans>

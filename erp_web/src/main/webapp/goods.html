@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>部门信息</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script>
+var name='goods';
+var width=300;
+var height=300;
+columns=[[
+    {field:'uuid',title:'商品编号',width:100},
+    {field:'name',title:'商品名称',width:100},
+    {field:'origin',title:'产地',width:100},
+    {field:'producer',title:'厂家',width:100},
+    {field:'unit',title:'计量单位',width:100},
+    {field:'inPrice',title:'进货价格',width:100},
+    {field:'outPrice',title:'销售价格',width:100},
+    {field:'goodsTypeUuid',title:'商品类型',width:100},
+    {field:'-',title:'操作',formatter: function(value,row,index){
+			return '<a href="javascript:void(0)" onclick="edit('+row.uuid+')">编辑</a>&nbsp;&nbsp;'+
+					'<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a>';
+		}
+	}
+]];
+</script>
+</head>
+<body>
+	<div class="easyui-panel" style="padding-left:4px; border-bottom:0px">
+	<div style="height:2px"></div>
+	<form id="searchForm">
+		<table>
+			<tr>
+				<td>商品名称：</td>
+				<td><input name="t1.name" type="text"/></td>
+				<td><!-- <button id="btnSearch" type="button">搜索</button> -->
+					<a href="javascript:void(0)" id="btnSearch" class="easyui-linkbutton">搜索</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div style="height:2px"></div>
+	</div>
+	<!-- 数据表格 -->
+	<table id="grid"></table>
+	<!-- 添加窗口 -->
+	<div id="editDlog">
+		<form id="editForm">
+		<input type="hidden" name="t.uuid"/>
+		<table>
+			<tr>
+				<td>商品名称：</td>
+				<td><input name="t.name" type="text"/></td>
+			</tr>
+			<tr>
+				<td>产地：</td>
+				<td><input name="t.origin" type="text"/></td>
+			</tr>
+			<tr>
+				<td>厂家：</td>
+				<td><input name="t.producer" type="text"/></td>
+			</tr>
+			<tr>
+				<td>计量单位：</td>
+				<td><input name="t.unit" type="text"/></td>
+			</tr>
+			<tr>
+				<td>进货价格：</td>
+				<td><input name="t.inPrice" type="text"/></td>
+			</tr>
+			<tr>
+				<td>销售价格：</td>
+				<td><input name="t.outPrice" type="text"/></td>
+			</tr>
+			<tr>
+				<td>商品类型：</td>
+				<td><input name="t.goodsTypeUuid" type="text"/></td>
+			</tr>
+		</table>
+		<!--  <button id="btnSave" type="button">添加</button> -->
+		<a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton">保存</a>
+	</form>
+	</div>
+</body>
+</html>

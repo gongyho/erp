@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>销售报表</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/report_order.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">   
+    <div data-options="region:'center',title:'销售统计表'" style="padding:5px;">
+    	<div class="easyui-panel" style="padding-left:4px; border-bottom:0px">
+			<div style="height:2px"></div>
+		<form id="searchForm">
+			<table>
+				<tr>
+					<td>开始时间：</td>
+					<td><input name="startDate" class="easyui-datebox" type="text"/></td>
+					<td>结束时间：</td>
+					<td><input name="endDate" class="easyui-datebox" type="text"/></td>
+					<td>
+						<a href="javascript:void(0)" id="btnSearch" class="easyui-linkbutton">搜索</a>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div style="height:2px"></div>
+		</div>
+		<!-- 数据表格 -->
+		<table id="grid"></table>
+    </div>   
+    <div data-options="region:'east',title:'销售饼状图',collapsible:false" style="width:500%;">
+    	<div id="container" style="min-width:400px;height:400px"></div>
+    </div>   
+</body> 
+</html>

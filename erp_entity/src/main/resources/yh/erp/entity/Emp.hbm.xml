@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Emp -->
+	<class name="yh.erp.entity.Emp" table="EMP">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="userName" column="USERNAME"/>
+		<property name="pwd" column="PWD"/>
+		<property name="name" column="NAME"/>
+		<property name="gender" column="GENDER"/>
+		<property name="email" column="EMAIL"/>
+		<property name="tele" column="TELE"/>
+		<property name="address" column="ADDRESS"/>
+		<property name="birthday" column="BIRTHDAY"/>
+		<many-to-one name="dep" class="yh.erp.entity.Dep" column="DEPUUID">
+		</many-to-one>
+
+        <bag name="roles" table="emp_role" order-by="ROLEUUID">
+            <key column="EMPUUID"></key>
+            <many-to-many column="ROLEUUID" class="yh.erp.entity.Role"></many-to-many>
+        </bag>
+	</class>
+</hibernate-mapping>

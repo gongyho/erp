@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>员工信息</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/date.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script>
+var name='emp';
+var width=300;
+var height=300;
+columns=[[
+    {field:'uuid',title:'员工编号',width:60},
+    {field:'userName',title:'用户名',width:100},
+   // {field:'pwd',title:'密码',width:100},
+    {field:'name',title:'真实姓名',width:100},
+    {field:'gender',title:'性别',width:50,formatter:function(value){
+    	if(1 == value*1)
+    		return '男';
+    	if(0 == value*1)
+    		return '女';
+    	return '';
+    }},
+    {field:'email',title:'邮箱',width:100},
+    {field:'tele',title:'电话',width:100},
+    {field:'birthday',title:'出生日期',width:100,formatter:function(value){
+    	return new Date(value).Format('yyyy-MM-dd');
+    }},
+    {field:'dep',title:'部门编号',width:100,formatter:function(value,row,index){
+    	if("undefined" != typeof(value))
+    		return value.name;
+    	return '';
+    }},
+    {field:'address',title:'地址',width:200},
+    {field:'-',title:'操作',formatter: function(value,row,index){
+			return '<a href="javascript:void(0)" onclick="edit('+row.uuid+')">编辑</a>&nbsp;&nbsp;'+
+					'<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a>';
+		}
+	}
+]];
+</script>
+</head>
+<body>
+	<div class="easyui-panel" style="padding-left:4px; border-bottom:0px">
+	<div style="height:2px"></div>
+	<form id="searchForm">
+		<table>
+			<tr>
+				<td>员工姓名：</td>
+				<td><input name="t1.name" type="text"/></td>
+				<td>员工电话：</td>
+				<td><input name="t1.tele" type="text"/></td>
+				<td><!-- <button id="btnSearch" type="button">搜索</button> -->
+					<a href="javascript:void(0)" id="btnSearch" class="easyui-linkbutton">搜索</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div style="height:2px"></div>
+	</div>
+	<!-- 数据表格 -->
+	<table id="grid"></table>
+	<!-- 添加窗口 -->
+	<div id="editDlog">
+		<form id="editForm">
+		<input type="hidden" name="t.uuid"/>
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td><input name="t.userName" type="text"/></td>
+			</tr>
+			<tr>
+				<td>真实姓名：</td>
+				<td><input name="t.name" type="text"/></td>
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td>
+				 <input type="radio" name="t.gender" value="0"/>女
+				 <input type="radio" name="t.gender" value="1"/>男
+				</td>
+			</tr>
+			<tr>
+				<td>邮箱：</td>
+				<td><input name="t.email" type="text"/></td>
+			</tr>
+			<tr>
+				<td>电话：</td>
+				<td><input name="t.tele" type="text"/></td>
+			</tr>
+			<tr>
+				<td>出生日期：</td>
+				<td>
+					<input name="t.birthday" class="easyui-datebox" />
+					<!-- <input name="t.birthday" type="text" /> -->
+				</td>
+			</tr>
+			<tr>
+				<td>部门：</td>
+				<td>
+					<input  class="easyui-combobox" name="t.dep.uuid"   
+    						data-options="valueField:'uuid',textField:'name',url:'dep_list'" /> </td>
+			</tr>
+			<tr>
+				<td>地址：</td>
+				<td><input name="t.address" type="text"/></td>
+			</tr>
+		</table>
+		<!--  <button id="btnSave" type="button">添加</button> -->
+		<a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton">保存</a>
+	</form>
+	</div>
+</body>
+</html>

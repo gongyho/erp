@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="job" class="yh.erp.job.MailJob">
+        <property name="storeDetailBiz" ref="storeDetailBiz"/>
+    </bean>
+
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="job"/>
+        <property name="targetMethod" value="sendStoreAlertMail"/>
+    </bean>
+    <!--触发器-->
+    <bean id="mailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"/>
+        <property name="cronExpression" value="0 45,46 22 * * ?"/>
+    </bean>
+    <!--任务调度容器-->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+        <property name="triggers">
+            <list>
+                <ref bean="mailTrigger"/>
+            </list>
+        </property>
+    </bean>
+</beans>

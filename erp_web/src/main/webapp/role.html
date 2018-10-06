@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>角色管理</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script>
+var name='role';
+columns=[[
+    {field:'uuid',title:'编号',width:100},
+    {field:'name',title:'角色名称',width:100},
+    {field:'-',title:'操作',formatter: function(value,row,index){
+			return '<a href="javascript:void(0)" onclick="edit('+row.uuid+')">编辑</a>&nbsp;&nbsp;'+
+					'<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a>';
+		}
+	}
+]];
+</script>
+</head>
+<body>
+	<div class="easyui-panel" style="padding-left:4px; border-bottom:0px">
+	<div style="height:2px"></div>
+	<form id="searchForm">
+		<table>
+			<tr>
+				<td>部门名称：</td>
+				<td><input name="t1.name" type="text"/></td>
+				<td><!-- <button id="btnSearch" type="button">搜索</button> -->
+					<a href="javascript:void(0)" id="btnSearch" class="easyui-linkbutton">搜索</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div style="height:2px"></div>
+	</div>
+	<!-- 数据表格 -->
+	<table id="grid"></table>
+	<!-- 添加窗口 -->
+	<div id="editDlog">
+		<form id="editForm">
+		<input type="hidden" name="t.uuid"/>
+		<table>
+			<tr>
+				<td>部门名称：</td>
+				<td><input name="t.name" type="text"/></td>
+			</tr>
+		</table>
+		<!--  <button id="btnSave" type="button">添加</button> -->
+		<a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton">保存</a>
+	</form>
+	</div>
+</body>
+</html>

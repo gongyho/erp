@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="shiroFilter"
+		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.html" />
+		<property name="unauthorizedUrl" value="/error.html" />
+		<!-- 添加自定义过滤器 -->
+		<property name="filters">
+			<map>
+				<entry key="perms2" value-ref="erpAuthorizationFilter"></entry>
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/error.html = anon
+				/login_*=anon
+				
+				
+				/*_list=perms[]
+				/dep.html=perms["部门"]
+				/emp.html=perms["员工"]
+				/emp_role.html=perms["用户角色管理"]
+				/goods.html=perms["商品"]
+				/goodstype.html=perms["商品类型"]
+				/report_order.html=perms["销售统计表"]
+				/report_trend.html=perms["销售趋势分析"]
+				/role.html=perms["角色管理"]
+				/role_menu.html=perms["角色权限管理"]
+				/store.html=perms["仓库"]
+				/storealert.html=perms["库存预警"]
+				/supplier.html=perms2["供应商","联系人"]
+				/orders.html=perms2["采购订单审核","采购订单入库","采购订单确认","我的采购订单","采购订单查询","我的销售订单","销售订单出库","销售订单查询"]
+
+				/dep_*=perms["部门"]
+				/goods_*=perms["商品"]
+				/goodstype_*=perms["商品类型"]
+				/store_*=perms["仓库"]
+				/storeDetail_*=perms["库存预警"]
+				/role_*=perms2["角色管理","角色权限管理"]
+				/emp_*=perms2["员工","用户角色管理"]
+				/supplier_*=perms2["供应商","联系人"]
+				/report_*=perms2["销售统计表","销售趋势分析"]
+				/orders_*=perms2["采购订单审核","采购订单入库","采购订单确认","我的采购订单","采购订单查询","我的销售订单","销售订单出库","销售订单查询"]
+				/orderDetail_doOutStore=perms["采购订单入库"]
+				/orderDetail_doEnd=perms["销售订单出库"]
+
+
+				/*=authc
+				/*.html = authc
+			</value>
+		</property>
+	</bean>
+
+	<bean id="securityManager"
+		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="erpRealm" />
+	</bean>
+
+	<bean id="erpRealm" class="yh.erp.realm.ErpRealm">
+		<property name="empBiz" ref="empBiz" />
+	</bean>
+
+	<bean id="erpAuthorizationFilter"
+		class="yh.erp.filter.ErpAuthorizationFilter">
+	</bean>
+
+	<!-- 启动shiro注解 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<!-- 默认使用JDK代理 ，如被代理类没有实现接口，必须使用下列配置开启 cglib代理 -->
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<!-- 对安全管理器 增强代码 ， spring 后处理器 -->
+	<bean id="lifecycleBeanPostProcessor"
+		class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!--  Inventory  -->
+	<class name="yh.erp.entity.Inventory" table="INVENTORY">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="goodsUuid" column="GOODSUUID"/>
+		<property name="storeUuid" column="STOREUUID"/>
+		<property name="num" column="NUM"/>
+		<property name="type" column="TYPE"/>
+		<property name="createTime" column="CREATETIME"/>
+		<property name="checkTime" column="CHECKTIME"/>
+		<property name="creater" column="CREATER"/>
+		<property name="checker" column="CHECKER"/>
+		<property name="state" column="STATE"/>
+		<property name="remark" column="REMARK"/>
+	</class>
+</hibernate-mapping>

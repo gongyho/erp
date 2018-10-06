@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Goods -->
+	<class name="yh.erp.entity.Goods" table="GOODS">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="name" column="NAME"/>
+		<property name="origin" column="ORIGIN"/>
+		<property name="producer" column="PRODUCER"/>
+		<property name="unit" column="UNIT"/>
+		<property name="inPrice" column="INPRICE"/>
+		<property name="outPrice" column="OUTPRICE"/>
+		<property name="goodsTypeUuid" column="GOODSTYPEUUID"/>
+	</class>
+</hibernate-mapping>

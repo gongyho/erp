@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 部门 -->
+	<bean id="depAction" class="yh.erp.web.DepAction" scope="prototype">
+		<property name="depBiz" ref="depBiz"/>
+	</bean>
+	<!-- 员工 -->
+	<bean id="empAction" class="yh.erp.web.EmpAction" scope="prototype">
+		<property name="empBiz" ref="empBiz"/>
+	</bean>
+	<!-- 商品 -->
+	<bean id="goodsAction" class="yh.erp.web.GoodsAction" scope="prototype">
+		<property name="goodsBiz" ref="goodsBiz"/>
+	</bean>
+	<!-- 订单 -->
+	<bean id="ordersAction" class="yh.erp.web.OrdersAction" scope="prototype">
+		<property name="ordersBiz" ref="ordersBiz"/>
+	</bean>
+	<!-- 退货订单 -->
+	<bean id="returnOrdersAction" class="yh.erp.web.ReturnOrdersAction" scope="prototype">
+		<property name="returnOrdersBiz" ref="returnOrdersBiz"/>
+	</bean>
+	<!-- 登陆 -->
+	<bean id="loginAction" class="yh.erp.web.LoginAction" scope="prototype">
+		<property name="jedis" ref="jedis"/>
+	</bean>
+	<!-- 菜单 -->
+	<bean id="menuAction" class="yh.erp.web.MenuAction" scope="prototype">
+		<property name="menuBiz" ref="menuBiz"/>
+		<property name="empBiz" ref="empBiz"/>
+	</bean>
+	<!-- 商品类型 -->
+	<bean id="goodsTypeAction" class="yh.erp.web.GoodsTypeAction" scope="prototype">
+		<property name="goodsTypeBiz" ref="goodsTypeBiz"/>
+	</bean>
+	<!-- 仓库 -->
+	<bean id="storeAction" class="yh.erp.web.StoreAction" scope="prototype">
+		<property name="storeBiz" ref="storeBiz"/>
+	</bean>
+	<!-- 联系人/供应商 -->
+	<bean id="supplierAction" class="yh.erp.web.SupplierAction" scope="prototype">
+		<property name="supplierBiz" ref="supplierBiz"/>
+	</bean>
+	<bean id="orderDetailAction" class="yh.erp.web.OrderDetailAction" scope="prototype">
+		<property name="orderDetailBiz" ref="orderDetailBiz"/>
+	</bean>
+	<bean id="reportAction" class="yh.erp.web.ReportAction" scope="prototype">
+		<property name="reportBiz" ref="reportBiz"/>
+	</bean>
+	<bean id="storeDetailAction" class="yh.erp.web.StoreDetailAction" scope="prototype">
+		<property name="storeDetailBiz" ref="storeDetailBiz"/>
+	</bean>
+
+	<bean id="roleAction" class="yh.erp.web.RoleAction" scope="prototype">
+		<property name="roleBiz" ref="roleBiz"/>
+	</bean>
+
+</beans>

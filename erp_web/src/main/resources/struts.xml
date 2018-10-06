@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="dep_*" class="depAction" method="{1}">
+		
+		</action>
+		
+		<action name="emp_*" class="empAction" method="{1}">
+		
+		</action>
+		
+		<action name="goods_*" class="goodsAction" method="{1}">
+		
+		</action>
+		
+		<action name="orders_*" class="ordersAction" method="{1}">
+		
+		</action>
+		
+		<action name="returnOrders_*" class="returnOrdersAction" method="{1}">
+		
+		</action>
+		
+		<action name="login_*" class="loginAction" method="{1}">
+		
+		</action>
+		
+		<action name="menu_*" class="menuAction" method="{1}">
+		
+		</action>
+		
+		<action name="goodsType_*" class="goodsTypeAction" method="{1}">
+			
+		</action>
+		
+		<action name="store_*" class="storeAction" method="{1}">
+			
+		</action>
+		
+		<action name="supplier_*" class="supplierAction" method="{1}">
+			
+		</action>
+		
+		<action name="orderDetail_*" class="orderDetailAction" method="{1}">
+			
+		</action>
+		<action name="report_*" class="reportAction" method="{1}">
+			
+		</action>
+		<action name="storeDetail_*" class="storeDetailAction" method="{1}">
+			
+		</action>
+     
+        <action name="role_*" class="roleAction" method="{1}">
+
+		</action>
+
+
+	</package>
+</struts>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>部门信息</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script>
+var name='returnOrders';
+columns=[[
+    {field:'uuid',title:'退货订单编号',width:100},
+    {field:'createTime',title:'生成日期',width:100},
+    {field:'checkTime',title:'审核日期',width:100},
+    {field:'endTime',title:'入库或出库日期',width:100},
+    {field:'type',title:'类型',width:100},
+    {field:'creater',title:'下单员',width:100},
+    {field:'checker',title:'审核员',width:100},
+    {field:'ender',title:'库管员',width:100},
+    {field:'supplierUuid',title:'/供应商或客户',width:100},
+    {field:'totalMoney',title:'合计金额',width:100},
+    {field:'state',title:'状态',width:100},
+    {field:'wayBills',title:'运单号',width:100},
+    {field:'ordersUuid',title:'原订单编号',width:100},
+    {field:'-',title:'操作',formatter: function(value,row,index){
+			return '<a href="javascript:void(0)" onclick="edit('+row.uuid+')">编辑</a>&nbsp;&nbsp;'+
+					'<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a>';
+		}
+	}
+]];
+</script>
+</head>
+<body>
+	<div class="easyui-panel" style="padding-left:4px; border-bottom:0px">
+	<div style="height:2px"></div>
+	<form id="searchForm">
+		<table>
+			<tr>
+				<!-- <td>部门名称：</td>
+				<td><input name="t1.name" type="text"/></td> -->
+				<td><!-- <button id="btnSearch" type="button">搜索</button> -->
+					<a href="javascript:void(0)" id="btnSearch" class="easyui-linkbutton">搜索</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div style="height:2px"></div>
+	</div>
+	<!-- 数据表格 -->
+	<table id="grid"></table>
+	<!-- 添加窗口 -->
+	<div id="editDlog">
+		<form id="editForm">
+		<input type="hidden" name="t.uuid"/>
+		<table>
+			<tr>
+				<td>生成日期：</td>
+				<td><input name="t.createTime" type="text"/></td>
+			</tr>
+			<tr>
+				<td>审核日期：</td>
+				<td><input name="t.checkTime" type="text"/></td>
+			</tr>
+			<tr>
+				<td>入库或出库日期：</td>
+				<td><input name="t.endTime" type="text"/></td>
+			</tr>
+			<tr>
+				<td>类型：</td>
+				<td><input name="t.type" type="text"/></td>
+			</tr>
+			<tr>
+				<td>下单员：</td>
+				<td><input name="t.creater" type="text"/></td>
+			</tr>
+			<tr>
+				<td>审核员：</td>
+				<td><input name="t.checker" type="text"/></td>
+			</tr>
+			<tr>
+				<td>库管员：</td>
+				<td><input name="t.ender" type="text"/></td>
+			</tr>
+			<tr>
+				<td>供应商或客户：</td>
+				<td><input name="t.supplierUuid" type="text"/></td>
+			</tr>
+			<tr>
+				<td>合计金额：</td>
+				<td><input name="t.totalMoney" type="text"/></td>
+			</tr>
+			<tr>
+				<td>状态：</td>
+				<td><input name="t.state" type="text"/></td>
+			</tr>
+			<tr>
+				<td>运单号：</td>
+				<td><input name="t.wayBills" type="text"/></td>
+			</tr>
+			<tr>
+				<td>原订单编号：</td>
+				<td><input name="t.ordersUuid" type="text"/></td>
+			</tr>
+		</table>
+		<!--  <button id="btnSave" type="button">添加</button> -->
+		<a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton">保存</a>
+	</form>
+	</div>
+</body>
+</html>

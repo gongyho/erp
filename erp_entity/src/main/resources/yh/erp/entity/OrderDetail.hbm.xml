@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- OrderDetail -->
+	<class name="yh.erp.entity.OrderDetail" table="ORDERDETAIL">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="goodsUuid" column="GOODSUUID"/>
+		<property name="goodsName" column="GOODSNAME"/>
+		<property name="price" column="PRICE"/>
+		<property name="num" column="NUM"/>
+		<property name="money" column="MONEY"/>
+		<property name="endTime" column="ENDTIME"/>
+		<property name="ender" column="ENDER"/>
+		<property name="storeUuid" column="STOREUUID"/>
+		<property name="state" column="STATE"/>
+		<many-to-one name="orders" class="yh.erp.entity.Orders" column="ORDERSUUID"/>
+	</class>
+</hibernate-mapping>

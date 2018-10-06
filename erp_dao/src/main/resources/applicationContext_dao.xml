@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- session工厂 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+			</props>
+		</property>
+		<!--映射  -->
+		<property name="mappingLocations">
+			<value>classpath:yh/erp/entity/*.hbm.xml</value>
+		</property>
+	</bean>
+	
+	<!-- DepDao -->
+	<bean id="depDao" class="yh.erp.dao.impl.DepDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- EmpDao -->
+	<bean id="empDao" class="yh.erp.dao.impl.EmpDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- GoodsDao -->
+	<bean id="goodsDao" class="yh.erp.dao.impl.GoodsDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- GoodsTypeDao -->
+	<bean id="goodsTypeDao" class="yh.erp.dao.impl.GoodsTypeDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- InventoryDao -->
+	<bean id="inventoryDao" class="yh.erp.dao.impl.InventoryDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- MenuDao -->
+	<bean id="menuDao" class="yh.erp.dao.impl.MenuDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- OrderDetailDao -->
+	<bean id="orderDetailDao" class="yh.erp.dao.impl.OrderDetailDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- OrdersDao -->
+	<bean id="ordersDao" class="yh.erp.dao.impl.OrdersDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- ReturnOrderDetailDao -->
+	<bean id="returnOrderDetailDao" class="yh.erp.dao.impl.ReturnOrderDetailDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- ReturnOrdersDao -->
+	<bean id="returnOrdersDao" class="yh.erp.dao.impl.ReturnOrdersDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- RoleDao -->
+	<bean id="roleDao" class="yh.erp.dao.impl.RoleDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- StoreDao -->
+	<bean id="storeDao" class="yh.erp.dao.impl.StoreDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- StoreDetailDao -->
+	<bean id="storeDetailDao" class="yh.erp.dao.impl.StoreDetailDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- StoreOperDao -->
+	<bean id="storeOperDao" class="yh.erp.dao.impl.StoreOperDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- SupplierDao -->
+	<bean id="supplierDao" class="yh.erp.dao.impl.SupplierDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- ReportDao -->
+	<bean id="reportDao" class="yh.erp.dao.impl.ReportDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+</beans>

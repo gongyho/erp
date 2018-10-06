@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Orders -->
+	<class name="yh.erp.entity.Orders" table="ORDERS">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="createTime" column="CREATETIME"/>
+		<property name="checkTime" column="CHECKTIME"/>
+		<property name="startTime" column="STARTTIME"/>
+		<property name="endTime" column="ENDTIME"/>
+		<property name="type" column="TYPE"/>
+		<property name="creater" column="CREATER"/>
+		<property name="checker" column="CHECKER"/>
+		<property name="starter" column="STARTER"/>
+		<property name="ender" column="ENDER"/>
+		<property name="supplierUuid" column="SUPPLIERUUID"/>
+		<property name="totalMoney" column="TOTALMONEY"/>
+		<property name="state" column="STATE"/>
+		<property name="wayBills" column="WAYBILLS"/>
+		<bag name="OrderDetails" cascade="save-update" inverse="true">
+			<key column="ORDERSUUID"/>
+			<one-to-many class="yh.erp.entity.OrderDetail"/>
+		</bag>
+	</class>
+</hibernate-mapping>

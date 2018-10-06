@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+    <script type="text/javascript" src="ui/jquery.min.js"></script>
+    <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="ui/date.js"></script>
+    <script type="text/javascript" src="ui/request.js"></script>
+    <script type="text/javascript" src="ui/download.js"></script>
+    <script type="text/javascript" src="js/orders.js"></script>
+    <script type="text/javascript" src="js/orders_add.js"></script>
+
+</head>
+<body>
+<!-- 数据表格 -->
+<table id="grid"></table>
+<div id="ordersDlg" style="padding: 2px" class="easyui-dialog" data-options="
+		height: 320,width: 700,title: '订单详情',modal:true,closed:true">
+    <table class="hovertable">
+        <tr>
+            <td class="bg">流水号</td>
+            <td id="uuid"></td>
+            <td class="bg">供应商</td>
+            <td colspan=3 id="supplierName"></td>
+            <td class="bg">状态</td>
+            <td id="state"></td>
+        </tr>
+        <tr>
+            <td width="10%" class="bg"> 下单人</td>
+            <td width="15%" id="createrName"></td>
+            <td width="10%" class="bg">审核人</td>
+            <td width="15%" id="checkerName"></td>
+            <td width="10%" class="bg">确认人</td>
+            <td width="15%" id="starterName"></td>
+            <td width="10%" class="bg">库管员</td>
+            <td width="15%" id="enderName"></td>
+        </tr>
+        <tr>
+            <td class="bg ">下单日期</td>
+            <td id="createTime"></td>
+            <td class="bg ">审核日期</td>
+            <td id="checkTime"></td>
+            <td class="bg ">确认日期</td>
+            <td id="startTime"></td>
+            <td class="bg ">入库日期</td>
+            <td id="endTime"></td>
+        </tr>
+        <tr>
+            <td class="bg noBorderBottom">运单号</td>
+            <td class=" noBorderBottom" id="waybill"></td>
+            <td class="bg noBorderBottom"></td>
+            <td class=" noBorderBottom"></td>
+            <td class="bg noBorderBottom"></td>
+            <td class=" noBorderBottom"></td>
+            <td class="bg noBorderBottom"></td>
+            <td class=" noBorderBottom"></td>
+        </tr>
+    </table>
+    <table id="itemgrid"></table>
+</div>
+<div id="storeDlg" style="padding: 2px" class="easyui-dialog" data-options="closed:true">
+    <table class="hovertable">
+        <tr>
+            <td class="bg" width="30%">流水号</td>
+            <td width="70%" id="detailUuid"></td>
+        </tr>
+        <tr>
+            <td class="bg" width="30%">商品编号</td>
+            <td width="70%" id="goodsUuid"></td>
+        </tr>
+        <tr>
+            <td class="bg">商品名称</td>
+            <td id="goodsName"></td>
+        </tr>
+        <tr>
+            <td class="bg">数量</td>
+            <td id="num"></td>
+        </tr>
+        <tr>
+            <td class="bg">仓库</td>
+            <td><input id="storeUuid" name="storeUuid"/></td>
+        </tr>
+    </table>
+</div>
+<div id="addOrdersDlg" style="padding:2px">
+    <form id="orderForm">
+        <span id="supplierText"></span><input id="supplier" name="t.supplierUuid"/>
+    </form>
+    <table id="ordersgrid"></table>
+</div>
+
+<div id="waybillDlg" style="padding:2px" class="easyui-dialog" data-options="
+title:'运单详情',width:500,height:300,modal:true,closed:true">
+    <table id="waybillgrid"></table>
+</div>
+</body>
+</html>

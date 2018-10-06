@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Dep -->
+	<class name="yh.erp.entity.Dep" table="DEP">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="name" column="NAME"></property>
+		<property name="tele" column="TELE"></property>
+	</class>
+</hibernate-mapping>

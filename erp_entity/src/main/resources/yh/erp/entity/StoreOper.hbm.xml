@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- StoreOper -->
+	<class name="yh.erp.entity.StoreOper" table="STOREOPER">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="empUuid" column="EMPUUID"/>
+		<property name="operTime" column="OPERTIME"/>
+		<property name="storeUuid" column="STOREUUID"/>
+		<property name="goodsUuid" column="GOODSUUID"/>
+		<property name="num" column="NUM"/>
+		<property name="type" column="TYPE"/>
+	</class>
+</hibernate-mapping>

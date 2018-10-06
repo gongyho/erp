@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Dep -->
+	<class name="yh.erp.entity.StoreAlert" table="storealert">
+		<id name="uuid" column="uuid">
+		</id>
+		<property name="goodsName" column="goodsname"></property>
+		<property name="storeNum" column="storenum"></property>
+		<property name="outNum" column="outnum"></property>
+	</class>
+</hibernate-mapping>

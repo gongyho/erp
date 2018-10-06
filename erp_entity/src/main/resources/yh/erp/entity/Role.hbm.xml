@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Role -->
+	<class name="yh.erp.entity.Role" table="ROLE">
+		<id name="uuid" column="UUID">
+			<generator class="identity"/>
+		</id>
+		<property name="name" column="NAME"/>
+
+		<bag name="menus" table="role_menu" order-by="MENUUUID">
+			<key column="ROLEUUID"></key>
+			<many-to-many column="MENUUUID" class="yh.erp.entity.Menu"></many-to-many>
+		</bag>
+		
+		<bag name="emps" table="emp_role" order-by="EMPUUID">
+			<key column="ROLEUUID"></key>
+			<many-to-many column="EMPUUID" class="yh.erp.entity.Emp"></many-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
