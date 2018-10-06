@@ -2,6 +2,7 @@ target
 /target
 *.class
 /.settings
+.settings
 .project
 *.iml
 /.idea
